@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { getAllUsers, registerUser } from "../apicalls/users.apicall";
 import {Link} from "react-router-dom"
+import axios from "axios";
 
 export default class EditUser extends Component{
 
@@ -75,14 +76,14 @@ export default class EditUser extends Component{
 
       }
 
-      handleSelect=(event)=>{
+      handleSelect=async(event)=>{
 
         event.stopPropagation();
 
         console.log("selected"+this.state.selectedUser)
-        this.setState({selectedUser:event.target.value});
+         await this.setState({selectedUser:event.target.value});
 
-        this.state.users.map((user=>{
+         this.state.users.map((user=>{
           if(user._id==this.state.selectedUser){
             this.setState({
               name: user.name,
